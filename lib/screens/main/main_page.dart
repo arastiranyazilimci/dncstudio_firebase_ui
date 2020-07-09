@@ -1,12 +1,11 @@
 import 'package:firebase_ui/app_properties.dart';
 import 'package:firebase_ui/custom_background.dart';
 import 'package:firebase_ui/models/product.dart';
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/category/category_list_page.dart';
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/notifications_page.dart';
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/profile_page.dart';
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/search_page.dart';
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/shop/check_out_page.dart';
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/tracking_page.dart';
+import 'package:firebase_ui/screens/category/category_list_page.dart';
+import 'package:firebase_ui/screens/notifications_page.dart';
+import 'package:firebase_ui/screens/profile_page.dart';
+import 'package:firebase_ui/screens/search_page.dart';
+import 'package:firebase_ui/screens/shop/check_out_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';

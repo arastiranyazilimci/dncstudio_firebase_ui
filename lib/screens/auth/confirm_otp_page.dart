@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_ui/app_properties.dart';
 import 'package:firebase_ui/screens/intro_page.dart';

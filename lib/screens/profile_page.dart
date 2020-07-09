@@ -1,9 +1,9 @@
 import 'package:firebase_ui/app_properties.dart';
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/faq_page.dart';
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/payment/payment_page.dart';
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/settings/settings_page.dart';
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/tracking_page.dart';
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/wallet/wallet_page.dart';
+import 'package:firebase_ui/screens/faq_page.dart';
+import 'package:firebase_ui/screens/payment/payment_page.dart';
+import 'package:firebase_ui/screens/settings/settings_page.dart';
+import 'package:firebase_ui/screens/tracking_page.dart';
+import 'package:firebase_ui/screens/wallet/wallet_page.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {

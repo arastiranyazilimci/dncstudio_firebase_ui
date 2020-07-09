@@ -1,7 +1,7 @@
 import 'package:firebase_ui/app_properties.dart';
 import 'package:firebase_ui/models/product.dart';
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/product/components/color_list.dart';
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/product/components/shop_product.dart';
+import 'package:firebase_ui/screens/product/components/color_list.dart';
+import 'package:firebase_ui/screens/product/components/shop_product.dart';
 import 'package:flutter/material.dart';
 
 class PromoItem extends StatelessWidget {

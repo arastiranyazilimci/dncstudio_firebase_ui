@@ -1,6 +1,6 @@
 import 'package:firebase_ui/app_properties.dart';
 import 'package:firebase_ui/models/product.dart';
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/product/product_page.dart';
+import 'package:firebase_ui/screens/product/product_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_page_indicator/flutter_page_indicator.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';

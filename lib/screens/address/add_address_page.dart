@@ -1,6 +1,6 @@
 import 'package:firebase_ui/app_properties.dart';
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/address/address_form.dart';
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/select_card_page.dart';
+import 'package:firebase_ui/screens/address/address_form.dart';
+import 'package:firebase_ui/screens/select_card_page.dart';
 import 'package:flutter/material.dart';
 
 class AddAddressPage extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:firebase_ui/api_service.dart';
 import 'package:firebase_ui/models/user.dart';
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/request_money/request_amount_page.dart';
+import 'package:firebase_ui/screens/request_money/request_amount_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
