@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "579778051290",
+    "firebase_url": "https://dncstudio-7bdd4.firebaseio.com",
+    "project_id": "dncstudio-7bdd4",
+    "storage_bucket": "dncstudio-7bdd4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:579778051290:android:2021f6d06df71cc67a39e3",
+        "android_client_info": {
+          "package_name": "com.dncstudio.firebase_ui"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "579778051290-p53884g5vimbrqcca05atk2371e6dvcb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dncstudio.firebase_ui",
+            "certificate_hash": "8b184aea0873447608379b5bc5bb0333cdaa76c1"
+          }
+        },
+        {
+          "client_id": "579778051290-t6klrd8q43i09pqfvh5pdfh2bs8r6sb3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1dabMLeyzyu_pPzmphAnFBMpPcM_0Ok4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "579778051290-t6klrd8q43i09pqfvh5pdfh2bs8r6sb3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
