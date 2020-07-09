@@ -227,7 +227,7 @@ class _loginPageState extends State<loginPage> {
           InkWell(
             onTap: () {
               Navigator.of(context)
-                  .pushReplacement(MaterialPageRoute(builder: (_) => ForgotPasswordPage()));
+                  .pushReplacement(MaterialPageRoute(builder: (_) => ForgotPasswordPage(auth: widget.auth,)));
             },
             child: Text(
               'Şifrenizi Sıfırlayın',

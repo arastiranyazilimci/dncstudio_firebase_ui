@@ -1,50 +1,65 @@
-
 import 'package:firebase_ui/app_properties.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:country_code_picker/country_code_picker.dart';
-
-
+import 'package:firebase_ui/services/authentication.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:firebase_ui/kutuphane.dart';
+import 'login_page.dart';
 import 'confirm_otp_page.dart';
+import 'dart:io';
 
 class ForgotPasswordPage extends StatefulWidget {
+  ForgotPasswordPage({Key key, this.auth })      : super(key: key);
+  final BaseAuth auth;
   @override
   _ForgotPasswordPageState createState() => _ForgotPasswordPageState();
 }
 
+
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
-  TextEditingController phoneNumber = TextEditingController(text: '46834683');
+  TextEditingController mail = TextEditingController(text: '');
 
   GlobalKey prefixKey = GlobalKey();
   double prefixWidth = 0;
 
-  Widget prefix() {
-    return Container(
-      key: prefixKey,
-      //padding: EdgeInsets.fromLTRB(12.0, 20.0, 12.0, 12.0),
-      margin: EdgeInsets.only(right: 4.0),
-      decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(color: Colors.black, width: 0.5))),
-      child: CountryCodePicker(
-        initialSelection: 'GT',
 
-        favorite: ['+1','US'],
-      )
-    );
+  void mailGonder() async{
+    bool errorvar=false;
+    await widget.auth.resetPassword(mail.text).catchError((e){
+      errorvar = true;
+      print(e.code);
+      print(e);
+
+      kutuphane.showToast("Hata Mail Bulunamadı", Icons.close);
+    }).then((f) async {
+        if(errorvar==false){
+          kutuphane.showToast("Mail Yollandı", Icons.email);
+          sleep(const Duration(seconds: 5));
+          Navigator.of(context).pushReplacement( MaterialPageRoute(builder: (_) => loginPage()));
+        }
+    });
   }
+
+  @override
+  void initState(){
+    kutuphane.flutterToast = FlutterToast(context);
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
     Widget background = Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-            image: AssetImage('assets/background.jpg'), fit: BoxFit.cover),
+           image: AssetImage('assets/background.jpg'), fit: BoxFit.cover),
       ),
       foregroundDecoration: BoxDecoration(color: transparentYellow),
     );
 
     Widget title = Text(
-      'Forgot your Password?',
+      'Şifrenizimi Unuttunuz?',
       style: TextStyle(
           color: Colors.white,
           fontSize: 34.0,
@@ -61,7 +76,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     Widget subTitle = Padding(
         padding: const EdgeInsets.only(right: 56.0),
         child: Text(
-          'Enter your registered mobile number to get the OTP',
+          'Şifre Yenilemek İçin Hesabınıza Ait Mail Adresinizi Giriniz',
           style: TextStyle(
             color: Colors.white,
             fontSize: 16.0,
@@ -73,40 +88,40 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       bottom: 40,
       child: InkWell(
         onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(builder:(_)=>ConfirmOtpPage()));
+         mailGonder();
         },
         child: Container(
           width: MediaQuery.of(context).size.width / 2,
           height: 80,
           child: Center(
-              child: new Text("Send OTP",
+              child: new Text("Gönder",
                   style: const TextStyle(
                       color: const Color(0xfffefefe),
                       fontWeight: FontWeight.w600,
                       fontStyle: FontStyle.normal,
                       fontSize: 20.0))),
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [
-                    Color.fromRGBO(236, 60, 3, 1),
-                    Color.fromRGBO(234, 60, 3, 1),
-                    Color.fromRGBO(216, 78, 16, 1),
-                  ],
-                  begin: FractionalOffset.topCenter,
-                  end: FractionalOffset.bottomCenter),
-              boxShadow: [
-                BoxShadow(
-                  color: Color.fromRGBO(0, 0, 0, 0.16),
-                  offset: Offset(0, 5),
-                  blurRadius: 10.0,
-                )
+                      decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          colors: [
+                            Color.fromRGBO(236, 60, 3, 1),
+                            Color.fromRGBO(234, 60, 3, 1),
+                            Color.fromRGBO(216, 78, 16, 1),
+                          ],
+                          begin: FractionalOffset.topCenter,
+                          end: FractionalOffset.bottomCenter),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color.fromRGBO(0, 0, 0, 0.16),
+                          offset: Offset(0, 5),
+                          blurRadius: 10.0,
+                        )
               ],
               borderRadius: BorderRadius.circular(9.0)),
         ),
       ),
     );
 
-    Widget phoneForm = Container(
+    Widget mailForm = Container(
       height: 210,
       child: Stack(
         children: <Widget>[
@@ -122,14 +137,22 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: <Widget>[
-                prefix(),
                 Flexible(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 8.0),
                     child: TextField(
-                      controller: phoneNumber,
+                      controller: mail,
+                      decoration: new InputDecoration(
+                            border: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            enabledBorder: InputBorder.none,
+                            errorBorder: InputBorder.none,
+                            disabledBorder: InputBorder.none,
+                            hintText: "mailiniz@mail.com"
+                        ),
                       style: TextStyle(fontSize: 16.0),
-                      keyboardType: TextInputType.phone,
+                      keyboardType: TextInputType.text,
+
                     ),
                   ),
                 ),
@@ -141,13 +164,15 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       ),
     );
 
+
+      //Mail Almadınmı Yeniden Yolla Yazılabilir.
     Widget resendAgainText = Padding(
         padding: const EdgeInsets.only(bottom: 20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "Didn't receive the OPT? ",
+              "",
               style: TextStyle(
                 fontStyle: FontStyle.italic,
                 color: Color.fromRGBO(255, 255, 255, 0.5),
@@ -157,7 +182,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             InkWell(
               onTap: () {},
               child: Text(
-                'Resend again',
+                '',
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -197,7 +222,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       Spacer(),
                       subTitle,
                       Spacer(flex: 2),
-                      phoneForm,
+                      mailForm,
                       Spacer(flex: 2),
                       resendAgainText
                     ],
