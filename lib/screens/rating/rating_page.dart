@@ -1,8 +1,7 @@
 import 'package:firebase_ui/app_properties.dart';
+import 'package:firebase_ui/screens/rating/rating_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/rating/rating_dialog.dart';
 
 class RatingPage extends StatefulWidget {
   @override

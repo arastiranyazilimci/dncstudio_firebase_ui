@@ -1,6 +1,6 @@
 import 'package:firebase_ui/app_properties.dart';
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/rating/rating_page.dart';
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/tracking_page.dart';
+import 'package:firebase_ui/screens/rating/rating_page.dart';
+import 'package:firebase_ui/screens/tracking_page.dart';
 import 'package:flutter/material.dart';
 
 class NotificationsPage extends StatelessWidget {

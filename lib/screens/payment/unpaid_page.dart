@@ -1,5 +1,5 @@
 import 'package:firebase_ui/app_properties.dart';
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/payment/promo_item.dart';
+import 'package:firebase_ui/screens/payment/promo_item.dart';
 import 'package:flutter/material.dart';
 
 class UnpaidPage extends StatefulWidget {

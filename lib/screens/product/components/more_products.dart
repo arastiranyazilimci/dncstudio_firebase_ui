@@ -1,6 +1,6 @@
 import 'package:firebase_ui/app_properties.dart';
 import 'package:firebase_ui/models/product.dart';
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/product/components/product_card.dart';
+import 'package:firebase_ui/screens/product/components/product_card.dart';
 import 'package:flutter/material.dart';
 
 class MoreProducts extends StatelessWidget {

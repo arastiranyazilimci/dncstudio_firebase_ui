@@ -1,10 +1,10 @@
 import 'package:firebase_ui/app_properties.dart';
 import 'package:firebase_ui/custom_background.dart';
 import 'package:firebase_ui/screens/auth/login_page.dart';
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/settings/change_country.dart';
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/settings/change_password_page.dart';
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/settings/legal_about_page.dart';
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/settings/notifications_settings_page.dart';
+import 'package:firebase_ui/screens/settings/change_country.dart';
+import 'package:firebase_ui/screens/settings/change_password_page.dart';
+import 'package:firebase_ui/screens/settings/legal_about_page.dart';
+import 'package:firebase_ui/screens/settings/notifications_settings_page.dart';
 import 'package:flutter/material.dart';
 
 import 'change_language_page.dart';

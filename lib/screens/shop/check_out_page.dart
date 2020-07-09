@@ -1,7 +1,7 @@
 import 'package:firebase_ui/app_properties.dart';
 import 'package:firebase_ui/models/product.dart';
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/address/add_address_page.dart';
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/payment/unpaid_page.dart';
+import 'package:firebase_ui/screens/address/add_address_page.dart';
+import 'package:firebase_ui/screens/payment/unpaid_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 

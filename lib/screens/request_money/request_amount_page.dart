@@ -1,6 +1,6 @@
 import 'package:firebase_ui/app_properties.dart';
 import 'package:firebase_ui/models/user.dart';
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/request_money/receive_page.dart';
+import 'package:firebase_ui/screens/request_money/receive_page.dart';
 import 'package:flutter/material.dart';
 
 class RequestAmountPage extends StatelessWidget {

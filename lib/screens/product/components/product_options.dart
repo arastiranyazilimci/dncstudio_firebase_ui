@@ -1,6 +1,6 @@
 import 'package:firebase_ui/app_properties.dart';
 import 'package:firebase_ui/models/product.dart';
-import 'file:///C:/Users/enbiri/Desktop/dncstudio_firebase_ui/lib/screens/shop/check_out_page.dart';
+import 'package:firebase_ui/screens/shop/check_out_page.dart';
 import 'package:flutter/material.dart';
 
 import 'shop_bottomSheet.dart';
