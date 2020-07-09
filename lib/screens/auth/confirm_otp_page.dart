@@ -10,7 +10,8 @@ import 'package:pin_code_text_field/pin_code_text_field.dart';
 import 'package:firebase_ui/screens/profile_page.dart';
 import 'package:firebase_ui/screens/profile_page.dart';
 
-//10 38 
+//10 38
+
 class ConfirmOtpPage extends StatefulWidget {
   ConfirmOtpPage({  this.auth, this.userId ,this.phone });
   final BaseAuth auth;
@@ -19,6 +20,7 @@ class ConfirmOtpPage extends StatefulWidget {
 
   @override
   _ConfirmOtpPageState createState() => _ConfirmOtpPageState();
+
 }
 
 class _ConfirmOtpPageState extends State<ConfirmOtpPage> {
@@ -31,7 +33,9 @@ class _ConfirmOtpPageState extends State<ConfirmOtpPage> {
 
   @override
   void initState() {
-    super.initState();
+
+    print("init");
+    _sendCodeToPhoneNumber();
   }
 
 //sms auth fonksyonları
@@ -118,7 +122,6 @@ class _ConfirmOtpPageState extends State<ConfirmOtpPage> {
   }
 
 
-
 //sms auth fonksyonları---------------
 
 
@@ -151,6 +154,7 @@ class _ConfirmOtpPageState extends State<ConfirmOtpPage> {
 
   @override
   Widget build(BuildContext context) {
+
     Widget title = Text(
       'Confirm your OTP',
       style: TextStyle(

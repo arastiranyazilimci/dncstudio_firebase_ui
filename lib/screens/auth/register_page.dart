@@ -10,8 +10,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:firebase_ui/screens/auth/confirm_otp_page.dart';
 import 'package:firebase_ui/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
-
 import 'forgot_password_page.dart';
 
 class RegisterPage extends StatefulWidget {

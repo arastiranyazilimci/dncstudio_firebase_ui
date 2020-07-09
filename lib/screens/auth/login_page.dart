@@ -45,7 +45,7 @@ class _loginPageState extends State<loginPage> {
   @override
   void initState() {
     super.initState();
-    kutuphane.flutterToast = FlutterToast(context);
+    kutuphane.flutterToast = FlutterToast(context); 
     widget.auth.getCurrentUser().then((user) {
       setState(() {
         if (user != null) {
