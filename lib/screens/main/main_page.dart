@@ -58,7 +58,7 @@ class _MainPageState extends State<MainPage>
     Widget appBar = Container(
       height: kToolbarHeight + MediaQuery.of(context).padding.top,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           IconButton( onPressed: () => Navigator.of(context)
                   .push(MaterialPageRoute(builder: (_) => NotificationsPage())),

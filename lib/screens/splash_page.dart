@@ -16,7 +16,9 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
     controller = AnimationController(
-        duration: Duration(milliseconds: 2500), vsync: this);
+      duration: Duration(milliseconds: 2500),
+      vsync: this,
+    );
     opacity = Tween<double>(begin: 1.0, end: 0.0).animate(controller)
       ..addListener(() {
         setState(() {});
@@ -33,43 +35,50 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   void navigationPage() {
-    Navigator.of(context) .pushReplacement(MaterialPageRoute(builder: (_) => loginPage()));
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (context) => loginPage()));
   }
 
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage('assets/background.jpg'), fit: BoxFit.cover)),
-      child: Container(
-        decoration: BoxDecoration(color: transparentYellow),
-        child: SafeArea(
-          child: new Scaffold(
-            body: Column(
-              children: <Widget>[
-                Expanded(
-                  child: Opacity(
-                      opacity: opacity.value,
-                      child: new Image.asset('assets/logo.png')),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: RichText(
-                    text: TextSpan(
+    return Scaffold(
+        body: Stack(
+      fit: StackFit.expand,
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/background.jpg"), fit: BoxFit.cover),
+          ),
+          child: Container(
+            decoration: BoxDecoration(color: transparentYellow),
+            child: SafeArea(
+              child: Column(
+                children: <Widget>[
+                  Expanded(
+                    child: Opacity(
+                        opacity: opacity.value,
+                        child: new Image.asset('assets/logo.png')),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: RichText(
+                      text: TextSpan(
                         style: TextStyle(color: Colors.black),
                         children: [
                           TextSpan(text: 'Powered By '),
                           TextSpan(
-                              text: 'Dncstudio',
+                              text: 'DNC Studio',
                               style: TextStyle(fontWeight: FontWeight.bold))
-                        ]),
-                  ),
-                )
-              ],
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),
-      ),
-    );
+      ],
+    ));
   }
 }
