@@ -45,22 +45,24 @@ class _RegisterPageState extends State<RegisterPage> {
     }else if( password!=passwordagain ){
       kutuphane.showToast("Şifreler Uyuşmuyor", Icons.close);
     }else {
-      userId = await widget.auth.signUp(email, password).catchError((e){
-        kutuphane.showToast("Kayıt Yaparken Hata", Icons.close);
-        print(e.code);
-        print(e);
-      });
+        userId = await widget.auth.signUp(email, password).catchError((e){
+         kutuphane.showToast("Kayıt Yaparken Hata", Icons.close);
+         print(e.code);
+         print(e);
+        });
 
       if(userId!="" && userId!=null) {
         print("AAAAAAAAAA $userId");
         Name namee = new Name(first: name);
-        User user = new User(           userId: userId, email: email, name: namee, phone: phone);
-        _database.reference().child("Users").push().set(user.toJson());
+        User user = new User( userId: userId, email: email, name: namee, phone: phone,verified: false);
+
+        _database.reference().child("Users").child(userId).set(user.toJson());
+
+
+        FirebaseUser userd = await FirebaseAuth.instance.currentUser();
         kutuphane.showToast("Kayıt Başarılı", Icons.close);
         Navigator.of(context).pushReplacement( MaterialPageRoute(builder: (_) => ConfirmOtpPage(auth:widget.auth,userId: userId,phone:phone)));
       }
-
-
     }
 
       return userId;

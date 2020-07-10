@@ -1,5 +1,6 @@
 class User {
   String userId;
+  bool verified;
   String gender;
   Name name;
   Location location;
@@ -16,6 +17,7 @@ class User {
   User(
       {
         this.userId,
+        this.verified,
         this.gender,
         this.name,
         this.location,
@@ -31,6 +33,7 @@ class User {
 
   User.fromJson(Map<String, dynamic> json) {
     userId = json['userId'];
+    verified = json['verified'];
     gender = json['gender'];
     name = json['name'] != null ? new Name.fromJson(json['name']) : null;
     location = json['location'] != null
@@ -53,6 +56,7 @@ class User {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['userId'] = this.userId;
+    data['verified'] = this.verified;
     data['gender'] = this.gender;
     if (this.name != null) {
       data['name'] = this.name.toJson();

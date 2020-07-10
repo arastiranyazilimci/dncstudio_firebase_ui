@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pin_code_text_field/pin_code_text_field.dart';
 import 'package:firebase_ui/screens/profile_page.dart';
-import 'package:firebase_ui/screens/profile_page.dart';
+import 'package:firebase_ui/screens/auth/login_page.dart';
+import 'package:firebase_database/firebase_database.dart';
+
 
 //10 38
 
@@ -27,6 +29,7 @@ class _ConfirmOtpPageState extends State<ConfirmOtpPage> {
   TextEditingController otp3 = TextEditingController(text: '3');
   TextEditingController otp4 = TextEditingController(text: '4');
   TextEditingController otp5 = TextEditingController(text: '5');
+  final FirebaseDatabase _database = FirebaseDatabase.instance;
   String verificationId ;
 
   @override
@@ -46,6 +49,7 @@ class _ConfirmOtpPageState extends State<ConfirmOtpPage> {
       setState(() {
         print(
             'Inside _sendCodeToPhoneNumber: signInWithPhoneNumber auto succeeded: $credential');
+        _database.reference().child("Users").child(widget.userId).set({"verified":true,"verified1":false});
         Navigator.pushReplacement (
             context,
              MaterialPageRoute(builder: (context) =>  ProfilePage( ))
@@ -62,7 +66,7 @@ class _ConfirmOtpPageState extends State<ConfirmOtpPage> {
         widget.auth.signOut();
         Navigator.pushReplacement (
             context,
-            MaterialPageRoute(builder: (context) =>  ProfilePage()));
+            MaterialPageRoute(builder: (context) =>  loginPage()));
       });
     };
 

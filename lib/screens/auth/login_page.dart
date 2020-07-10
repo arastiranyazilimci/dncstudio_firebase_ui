@@ -7,13 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:firebase_ui/screens/profile_page.dart';
 import 'package:firebase_ui/kutuphane.dart';
 import 'register_page.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_ui/models/user.dart';
+import '../main/main_page.dart';
 
 
-enum AuthStatus {
-  NOT_DETERMINED,
-  NOT_LOGGED_IN,
-  LOGGED_IN,
-}
 
 
 
@@ -37,15 +35,14 @@ class _loginPageState extends State<loginPage> {
   TextEditingController email =      TextEditingController(text: '');
   TextEditingController password = TextEditingController(text: '');
 
-
-
-
   String _userId = "";
 
   @override
   void initState() {
     super.initState();
-    kutuphane.flutterToast = FlutterToast(context); 
+    kutuphane.flutterToast = FlutterToast(context);
+
+
     widget.auth.getCurrentUser().then((user) {
       setState(() {
         if (user != null) {
@@ -58,24 +55,39 @@ class _loginPageState extends State<loginPage> {
 
 
 
+  Future<bool> verifydurumal(String Userid) async{
+  print(_userId);
+      bool result = (await FirebaseDatabase.instance.reference().child("Users/$Userid/verified").once()).value;
+      print(result);
+      return result;
+
+  }
+
 
 
     Future<String> girisyap(String email, String password) async{
 
    String userId="";
+   final FirebaseDatabase _database = FirebaseDatabase.instance;
     if(this.email.text == "" || this.password.text == ""  ){
       kutuphane.showToast("Email Yada Şifre Boş Olamaz",  Icons.close);
     }else {
         userId = await widget.auth.signIn(email, password).catchError((e) {
-        kutuphane.showToast("Giriş Yapılamadı", Icons.close);
-        print(e.hashCode);
-        print(e.toString());
-      }
+            kutuphane.showToast("Giriş Yapılamadı", Icons.close);
+
+            print(e.hashCode);
+            print(e.toString());
+          }
       );
+
+
       if (userId != null && userId != "") {
+        _userId=userId;
         //_showToast("Giriş Yapıldı",  Icons.check);
-        Navigator.of(context)
-            .pushReplacement(MaterialPageRoute(builder: (_) => ProfilePage()));
+        // _database.reference().child("users").child(userId).set({"verify":true});
+         bool verify=  await verifydurumal(userId);
+
+         Navigator.of(context) .pushReplacement(MaterialPageRoute(builder: (_) => MainPage()));
       }
     }
       return userId;

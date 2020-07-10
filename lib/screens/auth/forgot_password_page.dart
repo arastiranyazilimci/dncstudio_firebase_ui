@@ -7,8 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:firebase_ui/kutuphane.dart';
 import 'login_page.dart';
 import 'confirm_otp_page.dart';
-import 'dart:io';
-
+import "dart:async";
 class ForgotPasswordPage extends StatefulWidget {
   ForgotPasswordPage({Key key, this.auth })      : super(key: key);
   final BaseAuth auth;
@@ -35,7 +34,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     }).then((f) async {
         if(errorvar==false){
           kutuphane.showToast("Mail Yollandı", Icons.email);
-          sleep(const Duration(seconds: 5));
+          await new Future.delayed(const Duration(seconds : 2));
           Navigator.of(context).pushReplacement( MaterialPageRoute(builder: (_) => loginPage()));
         }
     });
