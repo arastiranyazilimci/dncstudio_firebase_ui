@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../kutuphane.dart';
 import '../main/main_page.dart';
-
+import '../../controllers/controller_category.dart';
 var c_context;
 
 Future<bool> verifydurumal(String Userid) async{
@@ -15,6 +15,8 @@ Future<bool> verifydurumal(String Userid) async{
 
 
 Future<String> girisyap(String email, String password) async{
+
+
 
   String userId="";
 

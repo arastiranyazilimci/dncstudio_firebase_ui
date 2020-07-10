@@ -1,6 +1,7 @@
 import '../../kutuphane.dart';
 import 'package:flutter/material.dart';
 import 'login_page.dart';
+
 var c_context;
 void mailGonder(String mail) async{
   bool errorvar=false;
