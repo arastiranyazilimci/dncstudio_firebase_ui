@@ -41,12 +41,12 @@ class _RegisterPageState extends State<RegisterPage> {
   Future<String>  kayitol(String name , String email,String password,String passwordagain,String phone) async{
 
     if(name=="" || email=="" || password=="" || phone=="" ){
-      kutuphane.showToast("Tüm Alanlar Doldurulmalıdır", Icons.close);
+      kutuphane.showToast("Tüm Alanlar Doldurulmalıdır", Icons.close,Colors.red);
     }else if( password!=passwordagain ){
-      kutuphane.showToast("Şifreler Uyuşmuyor", Icons.close);
+      kutuphane.showToast("Şifreler Uyuşmuyor", Icons.close,Colors.red);
     }else {
         userId = await widget.auth.signUp(email, password).catchError((e){
-         kutuphane.showToast("Kayıt Yaparken Hata", Icons.close);
+         kutuphane.showToast("Kayıt Yaparken Hata", Icons.close,Colors.red);
          print(e.code);
          print(e);
         });
@@ -60,7 +60,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
 
         FirebaseUser userd = await FirebaseAuth.instance.currentUser();
-        kutuphane.showToast("Kayıt Başarılı", Icons.close);
+        kutuphane.showToast("Kayıt Başarılı", Icons.close,Colors.green);
         Navigator.of(context).pushReplacement( MaterialPageRoute(builder: (_) => ConfirmOtpPage(auth:widget.auth,userId: userId,phone:phone)));
       }
     }

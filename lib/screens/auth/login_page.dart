@@ -15,6 +15,7 @@ import '../main/main_page.dart';
 
 
 
+
 class loginPage extends StatefulWidget {
   final BaseAuth auth = new Auth();
 
@@ -70,10 +71,10 @@ class _loginPageState extends State<loginPage> {
    String userId="";
    final FirebaseDatabase _database = FirebaseDatabase.instance;
     if(this.email.text == "" || this.password.text == ""  ){
-      kutuphane.showToast("Email Yada Şifre Boş Olamaz",  Icons.close);
+      kutuphane.showToast("Email Yada Şifre Boş Olamaz",  Icons.close,Colors.red);
     }else {
         userId = await widget.auth.signIn(email, password).catchError((e) {
-            kutuphane.showToast("Giriş Yapılamadı", Icons.close);
+            kutuphane.showToast("Giriş Yapılamadı", Icons.close,Colors.red);
 
             print(e.hashCode);
             print(e.toString());

@@ -30,10 +30,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       print(e.code);
       print(e);
 
-      kutuphane.showToast("Hata Mail Bulunamadı", Icons.close);
+      kutuphane.showToast("Hata Mail Bulunamadı", Icons.close,Colors.red[400]);
     }).then((f) async {
         if(errorvar==false){
-          kutuphane.showToast("Mail Yollandı", Icons.email);
+          kutuphane.showToast("Mail Yollandı", Icons.email,Colors.green);
           await new Future.delayed(const Duration(seconds : 2));
           Navigator.of(context).pushReplacement( MaterialPageRoute(builder: (_) => loginPage()));
         }
