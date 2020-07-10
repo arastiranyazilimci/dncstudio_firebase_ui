@@ -8,9 +8,11 @@ import 'package:firebase_ui/kutuphane.dart';
 import 'login_page.dart';
 import 'confirm_otp_page.dart';
 import "dart:async";
+import "forgot_password_fonksyonlar.dart";
+
 class ForgotPasswordPage extends StatefulWidget {
-  ForgotPasswordPage({Key key, this.auth })      : super(key: key);
-  final BaseAuth auth;
+
+
   @override
   _ForgotPasswordPageState createState() => _ForgotPasswordPageState();
 }
@@ -23,22 +25,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   double prefixWidth = 0;
 
 
-  void mailGonder() async{
-    bool errorvar=false;
-    await widget.auth.resetPassword(mail.text).catchError((e){
-      errorvar = true;
-      print(e.code);
-      print(e);
 
-      kutuphane.showToast("Hata Mail Bulunamadı", Icons.close,Colors.red[400]);
-    }).then((f) async {
-        if(errorvar==false){
-          kutuphane.showToast("Mail Yollandı", Icons.email,Colors.green);
-          await new Future.delayed(const Duration(seconds : 2));
-          Navigator.of(context).pushReplacement( MaterialPageRoute(builder: (_) => loginPage()));
-        }
-    });
-  }
 
   @override
   void initState(){
@@ -87,7 +74,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       bottom: 40,
       child: InkWell(
         onTap: () {
-         mailGonder();
+         mailGonder(mail.text);
         },
         child: Container(
           width: MediaQuery.of(context).size.width / 2,
