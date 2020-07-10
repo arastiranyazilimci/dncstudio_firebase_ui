@@ -26,7 +26,6 @@ Future<FirebaseUser> getUserFromCodePhone( String code, String verificationID) a
       return null;
     }
   }     catch (_) {}
-
   return null;
 }
 

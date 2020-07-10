@@ -46,8 +46,7 @@ class _ConfirmOtpPageState extends State<ConfirmOtpPage> {
 
     final PhoneVerificationCompleted verificationCompleted =      (AuthCredential credential) {
       setState(() {
-        print(
-            'Inside _sendCodeToPhoneNumber: signInWithPhoneNumber auto succeeded: $credential');
+        print(   'Inside _sendCodeToPhoneNumber: signInWithPhoneNumber auto succeeded: $credential');
         _database.reference().child("Users").child(kutuphane.userId).set({"verified":true,"verified1":false});
         Navigator.pushReplacement (
             context,
