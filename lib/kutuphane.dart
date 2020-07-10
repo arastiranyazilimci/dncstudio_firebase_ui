@@ -1,5 +1,7 @@
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_ui/services/authentication.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 enum AuthStatus {
   NOT_DETERMINED,
@@ -10,6 +12,10 @@ enum AuthStatus {
 
 class kutuphane {
   static  FlutterToast flutterToast;
+  static String userId;
+  static BaseAuth auth = new Auth();
+  static FirebaseDatabase fbd = FirebaseDatabase.instance;
+
   static void showToast(String mesaj,IconData ikon,Color colors) {
     Widget toast = Container(
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),

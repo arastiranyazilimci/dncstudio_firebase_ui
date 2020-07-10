@@ -1,21 +1,22 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_ui/app_properties.dart';
 import 'package:firebase_ui/screens/intro_page.dart';
-import 'package:firebase_ui/services/authentication.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pin_code_text_field/pin_code_text_field.dart';
 import 'package:firebase_ui/screens/profile_page.dart';
 import 'package:firebase_ui/screens/auth/login_page.dart';
 import 'package:firebase_database/firebase_database.dart';
-
+import '../../kutuphane.dart';
+import 'confirm_otp_fonksyonlar.dart';
 
 //10 38
 
 class ConfirmOtpPage extends StatefulWidget {
-  ConfirmOtpPage({  this.auth, this.userId ,this.phone });
-  final BaseAuth auth;
-  final String userId;
+  ConfirmOtpPage({ this.phone });
+
+
   final String phone;
 
   @override
@@ -30,7 +31,6 @@ class _ConfirmOtpPageState extends State<ConfirmOtpPage> {
   TextEditingController otp4 = TextEditingController(text: '4');
   TextEditingController otp5 = TextEditingController(text: '5');
   final FirebaseDatabase _database = FirebaseDatabase.instance;
-  String verificationId ;
 
   @override
   void initState() {
@@ -39,7 +39,6 @@ class _ConfirmOtpPageState extends State<ConfirmOtpPage> {
     _sendCodeToPhoneNumber();
   }
 
-//sms auth fonksyonları
 
   Future<void> _sendCodeToPhoneNumber() async {
     print("code sending");
@@ -49,10 +48,10 @@ class _ConfirmOtpPageState extends State<ConfirmOtpPage> {
       setState(() {
         print(
             'Inside _sendCodeToPhoneNumber: signInWithPhoneNumber auto succeeded: $credential');
-        _database.reference().child("Users").child(widget.userId).set({"verified":true,"verified1":false});
+        _database.reference().child("Users").child(kutuphane.userId).set({"verified":true,"verified1":false});
         Navigator.pushReplacement (
             context,
-             MaterialPageRoute(builder: (context) =>  ProfilePage( ))
+            MaterialPageRoute(builder: (context) =>  ProfilePage( ))
         );
       });
     };
@@ -63,7 +62,7 @@ class _ConfirmOtpPageState extends State<ConfirmOtpPage> {
         print(
             'Phone number verification failed. Code: ${authException.code}. Message: ${authException.message}');
 
-        widget.auth.signOut();
+        kutuphane.auth.signOut();
         Navigator.pushReplacement (
             context,
             MaterialPageRoute(builder: (context) =>  loginPage()));
@@ -72,14 +71,14 @@ class _ConfirmOtpPageState extends State<ConfirmOtpPage> {
 
     final PhoneCodeSent codeSent =
         (String verificationId, [int forceResendingToken]) async {
-      this.verificationId = verificationId;
+      verificationId = verificationId;
       print("code sent to " + phone);
 
     };
 
     final PhoneCodeAutoRetrievalTimeout codeAutoRetrievalTimeout =
         (String verificationId) {
-      this.verificationId = verificationId;
+      verificationId = verificationId;
       print("time out");
     };
 
@@ -91,42 +90,6 @@ class _ConfirmOtpPageState extends State<ConfirmOtpPage> {
         codeSent: codeSent,
         codeAutoRetrievalTimeout: codeAutoRetrievalTimeout);
   }
-  Future<FirebaseUser> getUserFromCodePhone( String code, String verificationID) async {
-    FirebaseAuth mAuth = FirebaseAuth.instance;
-
-    AuthCredential phoneAuthCredential = PhoneAuthProvider.getCredential(
-        verificationId: verificationID, smsCode: code);
-    try {
-      AuthResult result = await mAuth.signInWithCredential(phoneAuthCredential);
-
-      FirebaseUser currentUser = await mAuth.currentUser();
-      if (currentUser != null && result.user.uid == currentUser.uid) {
-        return currentUser;
-      } else {
-        return null;
-      }
-    } on PlatformException catch (_) {}
-
-    return null;
-  }
-
-  /// Sign in using an sms code as input.
-  void _signInWithPhoneNumber(String smsCode) async {
-
-    final FirebaseUser currentUser = await getUserFromCodePhone(smsCode,   verificationId);
-
-    if(widget.userId == currentUser.uid){
-      print('signed in with phone number successful: user -> ' + currentUser.displayName);
-    }
-
-
-
-  }
-
-
-//sms auth fonksyonları---------------
-
-
 
 
   Widget otpBox(TextEditingController otpController) {

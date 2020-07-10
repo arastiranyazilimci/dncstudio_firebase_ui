@@ -3,7 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_ui/app_properties.dart';
 import 'package:firebase_ui/models/user.dart';
 
-import 'package:firebase_ui/services/authentication.dart';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_ui/kutuphane.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -11,13 +11,13 @@ import 'package:firebase_ui/screens/auth/confirm_otp_page.dart';
 import 'package:firebase_ui/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'forgot_password_page.dart';
+import 'register_page_fonksyonlar.dart';
+
 
 class RegisterPage extends StatefulWidget {
-  RegisterPage({this.auth});
-  final BaseAuth auth;
-
   @override
   _RegisterPageState createState() => _RegisterPageState();
+
 }
 
 
@@ -38,41 +38,12 @@ class _RegisterPageState extends State<RegisterPage> {
 
 
 
-  Future<String>  kayitol(String name , String email,String password,String passwordagain,String phone) async{
-
-    if(name=="" || email=="" || password=="" || phone=="" ){
-      kutuphane.showToast("Tüm Alanlar Doldurulmalıdır", Icons.close,Colors.red);
-    }else if( password!=passwordagain ){
-      kutuphane.showToast("Şifreler Uyuşmuyor", Icons.close,Colors.red);
-    }else {
-        userId = await widget.auth.signUp(email, password).catchError((e){
-         kutuphane.showToast("Kayıt Yaparken Hata", Icons.close,Colors.red);
-         print(e.code);
-         print(e);
-        });
-
-      if(userId!="" && userId!=null) {
-        print("AAAAAAAAAA $userId");
-        Name namee = new Name(first: name);
-        User user = new User( userId: userId, email: email, name: namee, phone: phone,verified: false);
-
-        _database.reference().child("Users").child(userId).set(user.toJson());
-
-
-        FirebaseUser userd = await FirebaseAuth.instance.currentUser();
-        kutuphane.showToast("Kayıt Başarılı", Icons.close,Colors.green);
-        Navigator.of(context).pushReplacement( MaterialPageRoute(builder: (_) => ConfirmOtpPage(auth:widget.auth,userId: userId,phone:phone)));
-      }
-    }
-
-      return userId;
-    }
-
 
 
   @override
 void initState(){
   kutuphane.flutterToast = FlutterToast(context);
+  c_context = context;
 }
 
   @override

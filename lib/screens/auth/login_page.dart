@@ -1,30 +1,17 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_ui/app_properties.dart';
 import 'package:firebase_ui/screens/auth/forgot_password_page.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:firebase_ui/services/authentication.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_ui/screens/profile_page.dart';
 import 'package:firebase_ui/kutuphane.dart';
 import 'register_page.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_ui/models/user.dart';
-import '../main/main_page.dart';
-
-
+import 'login_page_fonksyonlar.dart';
 
 
 
 
 class loginPage extends StatefulWidget {
-  final BaseAuth auth = new Auth();
-
-
-
-
   @override
   _loginPageState createState() => _loginPageState();
-
 }
 
 
@@ -41,10 +28,10 @@ class _loginPageState extends State<loginPage> {
   @override
   void initState() {
     super.initState();
+    c_context = context ;
     kutuphane.flutterToast = FlutterToast(context);
 
-
-    widget.auth.getCurrentUser().then((user) {
+    kutuphane.auth.getCurrentUser().then((user) {
       setState(() {
         if (user != null) {
           _userId = user?.uid;
@@ -56,43 +43,6 @@ class _loginPageState extends State<loginPage> {
 
 
 
-  Future<bool> verifydurumal(String Userid) async{
-  print(_userId);
-      bool result = (await FirebaseDatabase.instance.reference().child("Users/$Userid/verified").once()).value;
-      print(result);
-      return result;
-
-  }
-
-
-
-    Future<String> girisyap(String email, String password) async{
-
-   String userId="";
-   final FirebaseDatabase _database = FirebaseDatabase.instance;
-    if(this.email.text == "" || this.password.text == ""  ){
-      kutuphane.showToast("Email Yada Şifre Boş Olamaz",  Icons.close,Colors.red);
-    }else {
-        userId = await widget.auth.signIn(email, password).catchError((e) {
-            kutuphane.showToast("Giriş Yapılamadı", Icons.close,Colors.red);
-
-            print(e.hashCode);
-            print(e.toString());
-          }
-      );
-
-
-      if (userId != null && userId != "") {
-        _userId=userId;
-        //_showToast("Giriş Yapıldı",  Icons.check);
-        // _database.reference().child("users").child(userId).set({"verify":true});
-         bool verify=  await verifydurumal(userId);
-
-         Navigator.of(context) .pushReplacement(MaterialPageRoute(builder: (_) => MainPage()));
-      }
-    }
-      return userId;
-    }
 
 //Giriş Yap  UI
   @override
@@ -240,7 +190,7 @@ class _loginPageState extends State<loginPage> {
           InkWell(
             onTap: () {
               Navigator.of(context)
-                  .pushReplacement(MaterialPageRoute(builder: (_) => ForgotPasswordPage(auth: widget.auth,)));
+                  .pushReplacement(MaterialPageRoute(builder: (_) => ForgotPasswordPage()));
             },
             child: Text(
               'Şifrenizi Sıfırlayın',
@@ -266,7 +216,7 @@ class _loginPageState extends State<loginPage> {
           InkWell(
             onTap: () {
               Navigator.of(context)
-                  .pushReplacement(MaterialPageRoute(builder: (_) => RegisterPage(auth:widget.auth)));
+                  .pushReplacement(MaterialPageRoute(builder: (_) => RegisterPage()));
             },
 
             child: Text(
