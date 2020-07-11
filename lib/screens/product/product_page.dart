@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'components/product_display.dart';
 import 'view_product_page.dart';
+import 'product_page_fonksyonlar.dart';
 
 class ProductPage extends StatefulWidget {
   final Product product;

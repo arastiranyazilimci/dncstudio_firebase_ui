@@ -30,7 +30,6 @@ class _loginPageState extends State<loginPage> {
     super.initState();
     c_context = context ;
     kutuphane.flutterToast = FlutterToast(context);
-
     kutuphane.auth.getCurrentUser().then((user) {
       setState(() {
         if (user != null) {

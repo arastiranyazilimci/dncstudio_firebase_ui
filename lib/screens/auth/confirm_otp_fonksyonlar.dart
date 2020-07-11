@@ -10,8 +10,7 @@ var c_context;
 
 
 //sms auth fonksyonları
-String verificationId ;
-
+String verificationId;
 Future<FirebaseUser> getUserFromCodePhone( String code, String verificationID) async {
   FirebaseAuth mAuth = FirebaseAuth.instance;
 
@@ -27,13 +26,11 @@ Future<FirebaseUser> getUserFromCodePhone( String code, String verificationID) a
       return null;
     }
   }     catch (_) {}
-
   return null;
 }
 
 /// Sign in using an sms code as input.
 void _signInWithPhoneNumber(String smsCode) async {
-
   final FirebaseUser currentUser = await getUserFromCodePhone(smsCode,   verificationId);
 
   if(kutuphane.userId == currentUser.uid){

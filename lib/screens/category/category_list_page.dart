@@ -2,8 +2,9 @@ import 'package:firebase_ui/app_properties.dart';
 import 'package:firebase_ui/models/category.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import 'components/staggered_category_card.dart';
+import 'category_list_fonksyonlar.dart';
+
 
 class CategoryListPage extends StatefulWidget {
   @override
@@ -11,58 +12,28 @@ class CategoryListPage extends StatefulWidget {
 }
 
 class _CategoryListPageState extends State<CategoryListPage> {
-  List<Category> categories = [
-    Category(
-      Color(0xffFCE183),
-      Color(0xffF68D7F),
-      'Gadgets',
-      'assets/jeans_5.png',
-    ),
-    Category(
-      Color(0xffF749A2),
-      Color(0xffFF7375),
-      'Clothes',
-      'assets/jeans_5.png',
-    ),
-    Category(
-      Color(0xff00E9DA),
-      Color(0xff5189EA),
-      'Fashion',
-      'assets/jeans_5.png',
-    ),
-    Category(
-      Color(0xffAF2D68),
-      Color(0xff632376),
-      'Home',
-      'assets/jeans_5.png',
-    ),
-    Category(
-      Color(0xff36E892),
-      Color(0xff33B2B9),
-      'Beauty',
-      'assets/jeans_5.png',
-    ),
-    Category(
-      Color(0xffF123C4),
-      Color(0xff668CEA),
-      'Appliances',
-      'assets/jeans_5.png',
-    ),
-  ];
+  List<Category> categories = [];
 
   List<Category> searchResults;
   TextEditingController searchController = TextEditingController();
 
   @override
-  void initState() {
+  void initState()  {
     // TODO: implement initState
     super.initState();
+    kategori ();
     searchResults = categories;
   }
 
+  Future<String>  kategori () async{
+    categories = await kategorilerInit();
+    searchResults = categories;
+    setState(() {  });
+  }
 
   @override
   Widget build(BuildContext context) {
+
     return Material(
       color: Color(0xffF9F9F9),
       child: Container(
