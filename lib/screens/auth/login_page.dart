@@ -1,26 +1,19 @@
 import 'package:firebase_ui/app_properties.dart';
 import 'package:firebase_ui/screens/auth/forgot_password_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_ui/kutuphane.dart';
 import 'register_page.dart';
 import 'login_page_fonksyonlar.dart';
 
-
-
-
 class loginPage extends StatefulWidget {
   @override
   _loginPageState createState() => _loginPageState();
 }
 
-
-
-
-
 class _loginPageState extends State<loginPage> {
-
-  TextEditingController email =      TextEditingController(text: '');
+  TextEditingController email = TextEditingController(text: '');
   TextEditingController password = TextEditingController(text: '');
 
   String _userId = "";
@@ -28,7 +21,7 @@ class _loginPageState extends State<loginPage> {
   @override
   void initState() {
     super.initState();
-    c_context = context ;
+    c_context = context;
     kutuphane.flutterToast = FlutterToast(context);
     kutuphane.auth.getCurrentUser().then((user) {
       setState(() {
@@ -39,9 +32,6 @@ class _loginPageState extends State<loginPage> {
       });
     });
   }
-
-
-
 
 //Giriş Yap  UI
   @override
@@ -74,15 +64,15 @@ class _loginPageState extends State<loginPage> {
         ));
 
     Widget loginButton = Positioned(
-      left: MediaQuery.of(context).size.width / 4,
-      bottom: 40,
+      left: MediaQuery.of(context).size.width / 2.5,
+      bottom: 60,
       child: InkWell(
         onTap: () {
           girisyap(email.text, password.text);
         },
         child: Container(
-          width: MediaQuery.of(context).size.width / 2,
-          height: 80,
+          width: MediaQuery.of(context).size.width / 3,
+          height: 50,
           child: Center(
               child: new Text("Giriş Yap",
                   style: const TextStyle(
@@ -90,7 +80,7 @@ class _loginPageState extends State<loginPage> {
                       fontWeight: FontWeight.w600,
                       fontStyle: FontStyle.normal,
                       fontSize: 20.0))),
-                     decoration: BoxDecoration(
+          decoration: BoxDecoration(
               gradient: LinearGradient(
                   colors: [
                     Color.fromRGBO(236, 60, 3, 1),
@@ -113,6 +103,7 @@ class _loginPageState extends State<loginPage> {
 
     Widget loginForm = Container(
       height: 240,
+      width: MediaQuery.of(context).size.width / 1.18,
       child: Stack(
         children: <Widget>[
           Container(
@@ -120,16 +111,21 @@ class _loginPageState extends State<loginPage> {
             width: MediaQuery.of(context).size.width,
             padding: const EdgeInsets.only(left: 32.0, right: 12.0),
             decoration: BoxDecoration(
-                color: Color.fromRGBO(255, 255, 255, 0.8),
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    bottomLeft: Radius.circular(10))),
+              color: Color.fromRGBO(255, 255, 255, 0.8),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10),
+                bottomLeft: Radius.circular(10),
+                bottomRight: Radius.circular(10),
+                topRight: Radius.circular(10),
+              ),
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: TextField(
+                    keyboardType: TextInputType.emailAddress,
                     controller: email,
                     style: TextStyle(fontSize: 16.0),
                     decoration: new InputDecoration(
@@ -138,28 +134,26 @@ class _loginPageState extends State<loginPage> {
                         enabledBorder: InputBorder.none,
                         errorBorder: InputBorder.none,
                         disabledBorder: InputBorder.none,
-                        contentPadding:
-                        EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
+                        contentPadding: EdgeInsets.only(
+                            left: 15, bottom: 11, top: 11, right: 15),
                         hintText: "name@mail.com"),
-
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: TextField(
-                    controller: password,
-                    style: TextStyle(fontSize: 16.0),
-                    obscureText: true,
+                      controller: password,
+                      style: TextStyle(fontSize: 16.0),
+                      obscureText: true,
                       decoration: new InputDecoration(
                           border: InputBorder.none,
                           focusedBorder: InputBorder.none,
                           enabledBorder: InputBorder.none,
                           errorBorder: InputBorder.none,
                           disabledBorder: InputBorder.none,
-                          contentPadding:
-                          EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
-                          hintText: "*************")
-                  ),
+                          contentPadding: EdgeInsets.only(
+                              left: 15, bottom: 11, top: 11, right: 15),
+                          hintText: "*************")),
                 ),
               ],
             ),
@@ -169,16 +163,12 @@ class _loginPageState extends State<loginPage> {
       ),
     );
 
-      Widget forgotPassword = Padding(
-
+    Widget forgotPassword = Padding(
       padding: const EdgeInsets.only(bottom: 20),
       child: Row(
-
         mainAxisAlignment: MainAxisAlignment.center,
-
         children: <Widget>[
-          Text   (
-
+          Text(
             'Şifrenizimi Unuttunuz? ',
             style: TextStyle(
               fontStyle: FontStyle.italic,
@@ -188,8 +178,8 @@ class _loginPageState extends State<loginPage> {
           ),
           InkWell(
             onTap: () {
-              Navigator.of(context)
-                  .pushReplacement(MaterialPageRoute(builder: (_) => ForgotPasswordPage()));
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => ForgotPasswordPage()));
             },
             child: Text(
               'Şifrenizi Sıfırlayın',
@@ -203,21 +193,16 @@ class _loginPageState extends State<loginPage> {
         ],
       ),
     );
-      Widget registerNavigate = Padding(
-
+    Widget registerNavigate = Padding(
       padding: const EdgeInsets.only(bottom: 20),
       child: Row(
-
         mainAxisAlignment: MainAxisAlignment.center,
-
         children: <Widget>[
-
           InkWell(
             onTap: () {
-              Navigator.of(context)
-                  .pushReplacement(MaterialPageRoute(builder: (_) => RegisterPage()));
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => RegisterPage()));
             },
-
             child: Text(
               'Hesabınız Yokmu? Kayıt Ol',
               style: TextStyle(
@@ -232,20 +217,17 @@ class _loginPageState extends State<loginPage> {
     );
 
     return Scaffold(
-
       body: Stack(
         children: <Widget>[
-
           Container(
             decoration: BoxDecoration(
-              image: DecorationImage(image: AssetImage('assets/background.jpg'),
-                  fit: BoxFit.cover)
-            ),
+                image: DecorationImage(
+                    image: AssetImage('assets/background.jpg'),
+                    fit: BoxFit.cover)),
           ),
           Container(
             decoration: BoxDecoration(
-                color: transparentYellow,
-
+              color: transparentYellow,
             ),
           ),
           Padding(

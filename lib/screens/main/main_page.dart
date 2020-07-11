@@ -53,20 +53,33 @@ class _MainPageState extends State<MainPage>
     bottomTabController = TabController(length: 4, vsync: this);
   }
 
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     Widget appBar = Container(
       height: kToolbarHeight + MediaQuery.of(context).padding.top,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          IconButton( onPressed: () => Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => NotificationsPage())),
-              icon: Icon(Icons.notifications)),
-          IconButton(
-              onPressed: () => Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => SearchPage())),
-              icon: SvgPicture.asset('assets/icons/search_icon.svg'))
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+
+          IconButton(icon: Icon(Icons.menu),onPressed: (){
+            _scaffoldKey.currentState.openDrawer();
+          },),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              IconButton(
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => NotificationsPage())),
+                  icon: Icon(Icons.notifications)),
+              IconButton(
+                  onPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => SearchPage())),
+                  icon: SvgPicture.asset('assets/icons/search_icon.svg'))
+            ],
+          ),
         ],
       ),
     );
@@ -192,6 +205,29 @@ class _MainPageState extends State<MainPage>
     );
 
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: Theme(
+        data: ThemeData(canvasColor: Colors.white,primaryColor: Color(0xffFDB846)),
+        child: Drawer(
+          child: ListView(
+            children: [
+              UserAccountsDrawerHeader(
+                  currentAccountPicture: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        "https://instagram.fsaw2-2.fna.fbcdn.net/v/t51.2885-19/s150x150/107076094_712992709490767_86331930390152931_n.jpg?_nc_ht=instagram.fsaw2-2.fna.fbcdn.net&_nc_ohc=er-43E40JaoAX8MTcZu&oh=42e8a3708a9c0668f9b87683e131852c&oe=5F318C3A"),
+                  ),
+                  accountName: Text("Mustafa Uygur"),
+                  accountEmail: Text("mustafauygur@outlook.com")),
+              ListTile(
+                leading: Icon(Icons.message),
+                trailing: Icon(Icons.arrow_forward_ios),
+                title: Text("Mesajlar"),
+                //subtitle: Text("2 okunmamış Mesaj"),
+              ),
+            ],
+          ),
+        ),
+      ),
       bottomNavigationBar: CustomBottomBar(controller: bottomTabController),
       body: CustomPaint(
         painter: MainBackground(),

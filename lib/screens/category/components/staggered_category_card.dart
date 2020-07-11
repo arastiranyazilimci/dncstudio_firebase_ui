@@ -111,70 +111,56 @@ class CategoryCard extends StatelessWidget {
   }
 }
 
-class StaggeredCardCard extends StatefulWidget {
+class StaggeredCard extends StatelessWidget {
   final Color begin;
   final Color end;
   final String categoryName;
   final String assetPath;
 
-  const StaggeredCardCard(
+  const StaggeredCard(
       {Key key, this.begin, this.end, this.categoryName, this.assetPath})
       : super(key: key);
 
   @override
-  _StaggeredCardCardState createState() => _StaggeredCardCardState();
-}
-
-class _StaggeredCardCardState extends State<StaggeredCardCard>
-    with TickerProviderStateMixin {
-  AnimationController _controller;
-  bool isActive = false;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _controller = AnimationController(
-        duration: const Duration(milliseconds: 300), vsync: this);
-  }
-
-  Future<void> _playAnimation() async {
-    try {
-      await _controller.forward().orCancel;
-    } on TickerCanceled {
-      // the animation got canceled, probably because we were disposed
-    }
-  }
-
-  Future<void> _reverseAnimation() async {
-    try {
-      await _controller.reverse().orCancel;
-    } on TickerCanceled {
-      // the animation got canceled, probably because we were disposed
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
-    var timeDilation = 10.0; // 1.0 is normal animation speed.
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () {
-        if (isActive) {
-          isActive = !isActive;
-          _reverseAnimation();
-        } else {
-          isActive = !isActive;
-          _playAnimation();
-        }
-      },
-      child: CategoryCard(
-        controller: _controller.view,
-        categoryName: widget.categoryName,
-        begin: widget.begin,
-        end: widget.end,
-        assetPath: widget.assetPath,
+    return Container(
+      height: 200,
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+              colors: [begin, end],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight),
+          borderRadius: BorderRadius.all(Radius.circular(10))),
+      padding: const EdgeInsets.all(16.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Align(
+              alignment: Alignment(-1, 0),
+              child: Text(
+                categoryName,
+                style: TextStyle(
+                    fontSize: 22,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+              )),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
+//        mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(bottom: 16.0),
+                height: 150,
+                child: Image.asset(
+                  assetPath,
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
-}
+  }

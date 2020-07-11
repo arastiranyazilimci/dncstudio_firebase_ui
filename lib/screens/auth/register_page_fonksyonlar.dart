@@ -28,7 +28,7 @@ Future<String>  kayitol(String name , String email,String password,String passwo
 
       FirebaseUser userd = await FirebaseAuth.instance.currentUser();
       kutuphane.showToast("Kayıt Başarılı", Icons.close,Colors.green);
-      Navigator.of(c_context).pushReplacement( MaterialPageRoute(builder: (_) => ConfirmOtpPage(phone:phone)));
+      Navigator.of(c_context).push( MaterialPageRoute(builder: (context) => ConfirmOtpPage(phone:phone)));
     }
   }
 

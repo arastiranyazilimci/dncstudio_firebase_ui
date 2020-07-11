@@ -1,5 +1,6 @@
 import 'package:firebase_ui/app_properties.dart';
 import 'package:firebase_ui/models/category.dart';
+import 'package:firebase_ui/screens/category/components/testing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'components/staggered_category_card.dart';
@@ -96,7 +97,7 @@ class _CategoryListPageState extends State<CategoryListPage> {
                           itemCount: searchResults.length,
                           itemBuilder: (_, index) => Padding(
                             padding: EdgeInsets.symmetric(vertical: 16.0,),
-                            child: StaggeredCardCard(
+                            child: StaggeredCard(
                               begin: searchResults[index].begin,
                               end: searchResults[index].end,
                               categoryName: searchResults[index].category,

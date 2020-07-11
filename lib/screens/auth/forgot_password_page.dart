@@ -11,12 +11,9 @@ import "dart:async";
 import "forgot_password_fonksyonlar.dart";
 
 class ForgotPasswordPage extends StatefulWidget {
-
-
   @override
   _ForgotPasswordPageState createState() => _ForgotPasswordPageState();
 }
-
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   TextEditingController mail = TextEditingController(text: '');
@@ -24,22 +21,17 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   GlobalKey prefixKey = GlobalKey();
   double prefixWidth = 0;
 
-
-
-
   @override
-  void initState(){
+  void initState() {
     kutuphane.flutterToast = FlutterToast(context);
   }
-
-
 
   @override
   Widget build(BuildContext context) {
     Widget background = Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-           image: AssetImage('assets/background.jpg'), fit: BoxFit.cover),
+            image: AssetImage('assets/background.jpg'), fit: BoxFit.cover),
       ),
       foregroundDecoration: BoxDecoration(color: transparentYellow),
     );
@@ -70,37 +62,40 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         ));
 
     Widget sendButton = Positioned(
-      left: MediaQuery.of(context).size.width / 4,
-      bottom: 40,
+      left: MediaQuery.of(context).size.width / 2.5,
+      bottom: 80,
       child: InkWell(
         onTap: () {
-         mailGonder(mail.text);
+          mailGonder(mail.text);
         },
         child: Container(
-          width: MediaQuery.of(context).size.width / 2,
-          height: 80,
+          width: MediaQuery.of(context).size.width /3,
+          height: 50,
           child: Center(
-              child: new Text("Gönder",
-                  style: const TextStyle(
-                      color: const Color(0xfffefefe),
-                      fontWeight: FontWeight.w600,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 20.0))),
-                      decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          colors: [
-                            Color.fromRGBO(236, 60, 3, 1),
-                            Color.fromRGBO(234, 60, 3, 1),
-                            Color.fromRGBO(216, 78, 16, 1),
-                          ],
-                          begin: FractionalOffset.topCenter,
-                          end: FractionalOffset.bottomCenter),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color.fromRGBO(0, 0, 0, 0.16),
-                          offset: Offset(0, 5),
-                          blurRadius: 10.0,
-                        )
+            child: new Text(
+              "Gönder",
+              style: const TextStyle(
+                  color: const Color(0xfffefefe),
+                  fontWeight: FontWeight.w600,
+                  fontStyle: FontStyle.normal,
+                  fontSize: 20.0),
+            ),
+          ),
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [
+                    Color.fromRGBO(236, 60, 3, 1),
+                    Color.fromRGBO(234, 60, 3, 1),
+                    Color.fromRGBO(216, 78, 16, 1),
+                  ],
+                  begin: FractionalOffset.topCenter,
+                  end: FractionalOffset.bottomCenter),
+              boxShadow: [
+                BoxShadow(
+                  color: Color.fromRGBO(0, 0, 0, 0.16),
+                  offset: Offset(0, 5),
+                  blurRadius: 10.0,
+                )
               ],
               borderRadius: BorderRadius.circular(9.0)),
         ),
@@ -109,17 +104,22 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
     Widget mailForm = Container(
       height: 210,
+      width: MediaQuery.of(context).size.width / 1.18,
       child: Stack(
         children: <Widget>[
           Container(
             height: 100,
             width: MediaQuery.of(context).size.width,
-            padding: const EdgeInsets.only(left: 32.0, right: 12.0,bottom: 30),
+            padding: const EdgeInsets.only(left: 32.0, right: 12.0, bottom: 30),
             decoration: BoxDecoration(
-                color: Color.fromRGBO(255, 255, 255, 0.8),
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    bottomLeft: Radius.circular(10))),
+              color: Color.fromRGBO(255, 255, 255, 0.8),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10),
+                bottomLeft: Radius.circular(10),
+                topRight: Radius.circular(10),
+                bottomRight: Radius.circular(10),
+              ),
+            ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: <Widget>[
@@ -129,16 +129,14 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     child: TextField(
                       controller: mail,
                       decoration: new InputDecoration(
-                            border: InputBorder.none,
-                            focusedBorder: InputBorder.none,
-                            enabledBorder: InputBorder.none,
-                            errorBorder: InputBorder.none,
-                            disabledBorder: InputBorder.none,
-                            hintText: "mailiniz@mail.com"
-                        ),
+                          border: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          errorBorder: InputBorder.none,
+                          disabledBorder: InputBorder.none,
+                          hintText: "mailiniz@mail.com"),
                       style: TextStyle(fontSize: 16.0),
                       keyboardType: TextInputType.text,
-
                     ),
                   ),
                 ),
@@ -150,8 +148,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       ),
     );
 
-
-      //Mail Almadınmı Yeniden Yolla Yazılabilir.
+    //Mail Almadınmı Yeniden Yolla Yazılabilir.
     Widget resendAgainText = Padding(
         padding: const EdgeInsets.only(bottom: 20),
         child: Row(
@@ -181,16 +178,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(new FocusNode()),
       child: Container(
-        decoration:BoxDecoration(
-            image:DecorationImage(
-                image: AssetImage('assets/background.jpg'),
-                fit: BoxFit.cover
-            )
-        ),
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/background.jpg'), fit: BoxFit.cover)),
         child: Container(
-          decoration: BoxDecoration(
-            color:transparentYellow
-          ),
+          decoration: BoxDecoration(color: transparentYellow),
           child: Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.transparent,
@@ -222,5 +214,3 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     );
   }
 }
-
-
