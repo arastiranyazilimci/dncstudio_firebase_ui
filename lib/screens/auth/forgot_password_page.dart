@@ -136,7 +136,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                           disabledBorder: InputBorder.none,
                           hintText: "mailiniz@mail.com"),
                       style: TextStyle(fontSize: 16.0),
-                      keyboardType: TextInputType.text,
+                      keyboardType: TextInputType.emailAddress,
                     ),
                   ),
                 ),
@@ -205,7 +205,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       resendAgainText
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ),

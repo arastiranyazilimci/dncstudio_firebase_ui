@@ -136,6 +136,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: TextField(
+                    keyboardType: TextInputType.phone,
                       controller: phone,
                       style: TextStyle(fontSize: 16.0),
                       decoration: new InputDecoration(
@@ -149,6 +150,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: TextField(
+                    keyboardType: TextInputType.emailAddress,
                       controller: email,
                       style: TextStyle(fontSize: 16.0),
                       decoration: new InputDecoration(
