@@ -2,6 +2,7 @@ import 'package:firebase_ui/app_properties.dart';
 import 'package:firebase_ui/custom_background.dart';
 import 'package:firebase_ui/models/product.dart';
 import 'package:firebase_ui/screens/category/category_list_page.dart';
+import 'package:firebase_ui/screens/category/components/category_product_list.dart';
 import 'package:firebase_ui/screens/main/components/custom_bottom_bar.dart';
 import 'package:firebase_ui/screens/main/components/recommended_list.dart';
 import 'package:firebase_ui/screens/notifications_page.dart';
@@ -89,7 +90,7 @@ class _CategoryOnTapState extends State<CategoryOnTap>
             padding: EdgeInsets.only(
               top: 60,
             ),
-            child: RecommendedList()),
+            child: CategoryProductPage()),
       ),
     );
   }
