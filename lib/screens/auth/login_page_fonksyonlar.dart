@@ -35,7 +35,7 @@ Future<String> girisyap(String email, String password) async{
       // _database.reference().child("users").child(userId).set({"verify":true});
       bool verify=  await verifydurumal(userId);
       kutuphane.userId=userId;
-      Navigator.of(c_context) .pushReplacement(MaterialPageRoute(builder: (_) => ProductPage(product: Product("denemwe","11","1",1.1))));
+      Navigator.of(c_context) .pushReplacement(MaterialPageRoute(builder: (context) => MainPage()));
     }
   }
   return userId;
